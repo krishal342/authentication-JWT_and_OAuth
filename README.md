@@ -2,6 +2,7 @@
 - jsonwebtoken( JWT )
 - postgreSQL DataBase
 - bcrypt
+- cookie-parser
 
 # dependencies
 
@@ -11,7 +12,8 @@
 - "dotenv": "^17.2.3",
 - "express": "^5.2.1",
 - "jsonwebtoken": "^9.0.3",
-- "pg": "^8.16.3"
+- "pg": "^8.16.3",
+- "cookie-parser": "^1.4.7",
 
 
 # .env variables
