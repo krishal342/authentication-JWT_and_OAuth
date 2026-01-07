@@ -1,18 +1,32 @@
 import jwt from 'jsonwebtoken';
 
-import config from '../config/config';
+import config from '../config/config.js';
+
+
 const authMiddleware = async (req, res, next) => {
-    try{
-        const token = req.cookies.loginToken;
-        if(!token){
-            return res.status(401).json({
+    try {
+
+        if (req.cookies.loginToken) {
+            const token = req.cookies.loginToken;
+
+            const decoded = jwt.verify(token, config.JWT_SECRET);
+            req.user = decoded;
+            next();
+        } else if (req.user) {
+            req.user = {
+                userId: req.user.id,
+                email: req.user.email,
+            };
+            next();
+        } else {
+            res.status(401).json({
                 error: "Unauthorized"
             });
+            next();
         }
-        const decoded = jwt.verify(token, config.JWT_SECRET);
-        req.user = decoded;
-        next();
-    }catch(err){
+
+
+    } catch (err) {
         next(err);
     }
 }

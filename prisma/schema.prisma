@@ -18,6 +18,16 @@ model User {
   firstName String
   lastName String
   email String @unique
-  password String
+  password String?
   createdAt DateTime @default(now())
+
+  googleId String? @unique
+  githubId String? @unique
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
 }
