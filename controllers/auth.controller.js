@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 
 import { prisma } from '../lib/prisma.js';
-import generateToken from '../lib/tokengenration.js';
+import  generateToken  from '../lib/tokenGenration.js';
 
 import config from '../config/config.js';
 
