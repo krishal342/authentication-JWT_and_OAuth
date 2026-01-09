@@ -5,6 +5,7 @@ import config from '../config/config.js';
 
 const authMiddleware = async (req, res, next) => {
     console.log('middleware', req.user);
+    console.log(req.cookies, req.session);
     try {
         if (req.cookies.loginToken) {
             const token = req.cookies.loginToken;
