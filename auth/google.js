@@ -41,13 +41,11 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.serializeUser(function (user, done) {
-    console.log("serializeuser", user);
     done(null, user.id);
 });
 
 passport.deserializeUser( async function (id, done) {
     try {
-        console.log("deserializeuser", id);
         const user = await prisma.user.findUnique({ where: { id: id } });
         done(null, user);
 

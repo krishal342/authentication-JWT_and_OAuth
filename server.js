@@ -28,7 +28,6 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-//middleware for session
 app.use(session({
     secret: 'keyboard_cat',
     resave: false,
@@ -36,8 +35,8 @@ app.use(session({
     proxy:true,
     cookie: { 
         httpOnly: true, 
-        secure: true,
-        sameSite: 'none',
+        secure: config.NOED_ENV === 'production',
+        sameSite: config.NOED_ENV === 'production' ? 'none' : 'lax',
         maxAge: 24 * 60 * 60 * 1000
     },
     store: new PrismaSessionStore(
@@ -51,12 +50,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
-
 
 // API route
 app.use('/auth', authRouter);

@@ -5,7 +5,6 @@ import { prisma } from '../lib/prisma.js';
 import  generateToken  from '../lib/tokenGenration.js';
 
 import config from '../config/config.js';
-import { makeStrictEnum } from '@prisma/client/runtime/client';
 
 export const signup = async (req, res, next) => {
     try {
@@ -97,8 +96,8 @@ export const logout = async (req, res, next) => {
             // jwt logout
             return res.clearCookie("loginToken",{
                 httpOnly: true,
-                secure: true,
-                sameSite: 'none',
+                secure: config.NOED_ENV === "production",
+                sameSite: config.NOED_ENV === "production" ? "none" : "lax",
                 path: '/',
             }).status(200).json({
                 success: true,
@@ -110,6 +109,12 @@ export const logout = async (req, res, next) => {
             req.logout(err =>{
                 if (err) return next(err);
                 req.session.destroy(()=>{
+                    res.clearCookie("connect.sid",{
+                        path: '/',
+                        httpOnly: true,
+                        secure: config.NOED_ENV === "production",
+                        sameSite: config.NOED_ENV === "production" ? "none" : "lax",
+                    });
                     res.status(200).json({success: true, message: "User logged out successfully"});
                 });
             });

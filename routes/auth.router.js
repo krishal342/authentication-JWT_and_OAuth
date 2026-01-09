@@ -2,7 +2,7 @@ import express from 'express';
 import passport from 'passport';
 
 
-import { signup, login, logout, sendOTP,resetPassword } from '../controllers/auth.controller.js';
+import { signup, login, logout, sendOTP, resetPassword } from '../controllers/auth.controller.js';
 
 import '../auth/google.js';
 import '../auth/github.js';
@@ -27,10 +27,8 @@ authRouter.get('/google',
 authRouter.get('/google/callback',
     passport.authenticate('google', { failureRedirect: `${config.FRONTEND_URL}/auth/login` }),
     function (req, res) {
-        req.session.save(() => {
 
-            res.redirect(`${config.FRONTEND_URL}/`);
-         });
+        res.redirect(`${config.FRONTEND_URL}/`);
     }
 );
 
@@ -42,7 +40,7 @@ authRouter.get('/github',
 authRouter.get('/github/callback',
     passport.authenticate('github', { failureRedirect: `${config.FRONTEND_URL}/auth/login` }),
     function (req, res) {
-        
+
         res.redirect(`${config.FRONTEND_URL}/`);
     });
 

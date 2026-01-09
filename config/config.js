@@ -13,7 +13,9 @@ import "dotenv/config";
     GITHUB_CALLBACK_URL: process.env.GITHUB_CALLBACK_URL,
 
     APP_EMAIL: process.env.APP_EMAIL,
-    APP_PASSWORD: process.env.APP_PASSWORD
+    APP_PASSWORD: process.env.APP_PASSWORD,
+
+    NOED_ENV: process.env.NODE_ENV
 
 }
 export default config;

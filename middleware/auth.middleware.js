@@ -1,11 +1,7 @@
 import jwt from 'jsonwebtoken';
-
 import config from '../config/config.js';
 
-
 const authMiddleware = async (req, res, next) => {
-    console.log('middleware', req.user);
-    console.log(req.cookies, req.session);
     try {
         if (req.cookies.loginToken) {
             const token = req.cookies.loginToken;
@@ -14,7 +10,6 @@ const authMiddleware = async (req, res, next) => {
             next();
         }
         else if (req.user) {
-            console.log('in here')
             req.user = {
                 userId: req.user.id,
                 email: req.user.email,
@@ -25,7 +20,6 @@ const authMiddleware = async (req, res, next) => {
                 error: "Unauthorized"
             });
         }
-
 
     } catch (err) {
         next(err);
