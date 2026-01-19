@@ -28,7 +28,7 @@ authRouter.get('/google/callback',
     passport.authenticate('google', { failureRedirect: `${config.FRONTEND_URL}/auth/login` }),
     function (req, res) {
 
-        res.redirect(`${config.FRONTEND_URL}/`);
+        res.redirect(`${config.FRONTEND_URL}/oauth-success`);
     }
 );
 
@@ -41,7 +41,7 @@ authRouter.get('/github/callback',
     passport.authenticate('github', { failureRedirect: `${config.FRONTEND_URL}/auth/login` }),
     function (req, res) {
 
-        res.redirect(`${config.FRONTEND_URL}/`);
+        res.redirect(`${config.FRONTEND_URL}/oauth-success`);
     });
 
 export default authRouter;
