@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 import { prisma } from '../lib/prisma.js';
 import  generateToken  from '../lib/tokenGenration.js';
@@ -153,24 +153,14 @@ export const sendOTP = async (req, res, next) => {
             }
         });
 
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
-            auth: {
-                user: config.APP_EMAIL,
-                pass: config.APP_PASSWORD
-            }
-        });
+        const resend = new Resend(config.RESEND_API_KEY);
 
-        const mailOptions = {
-            from: config.APP_EMAIL,
+        await resend.emails.send({
+            from: "onboarding@resend.dev",
             to: email,
-            subject: 'Password Reset OTP',
+            subject: 'Password Reset OTP', 
             text: `Your OTP is ${otp}`
-        };
-
-        await transporter.sendMail(mailOptions);
+        });
 
         return res.status(200).json({
             success: true,

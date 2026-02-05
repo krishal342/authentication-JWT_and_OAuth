@@ -15,7 +15,10 @@ import "dotenv/config";
     APP_EMAIL: process.env.APP_EMAIL,
     APP_PASSWORD: process.env.APP_PASSWORD,
 
-    NODE_ENV: process.env.NODE_ENV
+    NODE_ENV: process.env.NODE_ENV,
+    RESEND_API_KEY: process.env.RESEND_API_KEY
+
+
 
 }
 export default config;
