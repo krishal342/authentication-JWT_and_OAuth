@@ -75,8 +75,8 @@ export const login = async (req, res, next) => {
 
         return res.cookie('loginToken', token,{
             httpOnly: true,
-            secure: config.NOED_ENV === "production",
-            sameSite: config.NOED_ENV === "production" ? "none" : 'lax',
+            secure: config.NODE_ENV === "production",
+            sameSite: config.NODE_ENV === "production" ? "none" : 'lax',
             path: '/',
             maxAge: 3 * 24 * 60 * 60 * 1000
         }).status(200).json({
@@ -96,8 +96,8 @@ export const logout = async (req, res, next) => {
             // jwt logout
             return res.clearCookie("loginToken",{
                 httpOnly: true,
-                secure: config.NOED_ENV === "production",
-                sameSite: config.NOED_ENV === "production" ? "none" : "lax",
+                secure: config.NODE_ENV === "production",
+                sameSite: config.NODE_ENV === "production" ? "none" : "lax",
                 path: '/',
             }).status(200).json({
                 success: true,
@@ -112,8 +112,8 @@ export const logout = async (req, res, next) => {
                     res.clearCookie("connect.sid",{
                         path: '/',
                         httpOnly: true,
-                        secure: config.NOED_ENV === "production",
-                        sameSite: config.NOED_ENV === "production" ? "none" : "lax",
+                        secure: config.NODE_ENV === "production",
+                        sameSite: config.NODE_ENV === "production" ? "none" : "lax",
                     });
                     res.status(200).json({success: true, message: "User logged out successfully"});
                 });
@@ -156,7 +156,7 @@ export const sendOTP = async (req, res, next) => {
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
-            secure: config.NOED_ENV === "production",
+            secure: config.NODE_ENV === "production",
             auth: {
                 user: config.APP_EMAIL,
                 pass: config.APP_PASSWORD
