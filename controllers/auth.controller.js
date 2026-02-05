@@ -155,7 +155,7 @@ export const sendOTP = async (req, res, next) => {
 
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
-            port: 465,
+            port: 587,
             secure: config.NODE_ENV === "production",
             auth: {
                 user: config.APP_EMAIL,
