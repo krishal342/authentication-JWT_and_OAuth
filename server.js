@@ -35,8 +35,8 @@ app.use(session({
     proxy:true,
     cookie: { 
         httpOnly: true, 
-        secure: config.NOED_ENV === 'production',
-        sameSite: config.NOED_ENV === 'production' ? 'none' : 'lax',
+        secure: config.NODE_ENV === 'production',
+        sameSite: config.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 24 * 60 * 60 * 1000
     },
     store: new PrismaSessionStore(
