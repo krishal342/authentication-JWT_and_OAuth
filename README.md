@@ -10,26 +10,25 @@
 - postgreSQL DataBase
 - bcrypt
 - cookie-parser
-- nodemailer
 
 # dependencies
 
- - "@prisma/adapter-pg": "^7.2.0",
- - "@prisma/client": "^7.2.0",
- - "@quixo3/prisma-session-store": "^3.1.19",
- - "bcrypt": "^6.0.0",
- - "cookie-parser": "^1.4.7",
- - "cors": "^2.8.5",
- - "dotenv": "^17.2.3",
- - "express": "^5.2.1",
- - "express-session": "^1.18.2",
- - "jsonwebtoken": "^9.0.3",
- - "node-cron": "^4.2.1",
- - "nodemailer": "^7.0.12",
- - "passport": "^0.7.0",
- - "passport-github2": "^0.1.12",
- - "passport-google-oauth20": "^2.0.0",
- - "pg": "^8.16.3"
+ - "@prisma/adapter-pg": "7.2.0",
+ - "@prisma/client": "7.2.0",
+ - "@quixo3/prisma-session-store": "3.1.19",
+ - "bcrypt": "6.0.0",
+ - "cookie-parser": "1.4.7",
+ - "cors": "2.8.5",
+ - "dotenv": "17.2.3",
+ - "express": "5.2.1",
+ - "express-session": "1.18.2",
+ - "jsonwebtoken": "9.0.3",
+ - "node-cron": "4.2.1",
+ - "passport": "0.7.0",
+ - "passport-github2": "0.1.12",
+ - "passport-google-oauth20": "2.0.0",
+ - "pg": "8.16.3",
+ - "resend": "6.9.1"
 
 
 # .env variables
@@ -49,6 +48,8 @@
 
  - APP_EMAIL
  - APP_PASSWORD
+
+ - RESEND_API_KEY
 
 
 # Routes
